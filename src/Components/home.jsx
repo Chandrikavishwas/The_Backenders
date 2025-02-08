@@ -12,6 +12,7 @@ import News from "./news";
 import ReactModal from "react-modal";
 import "aos/dist/aos.css";
 import HomeCards from "./HomeCards";
+import ChatBot from "./chatbot";
 
 ReactModal.setAppElement("#root");
 const Home = () => {
@@ -129,6 +130,7 @@ const Home = () => {
       <div className="lower-content" data-aos="fade-in" data-aos-delay="100">
         <Footer />
       </div>
+      <ChatBot/>
     </>
   );
 };

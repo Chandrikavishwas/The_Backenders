@@ -9,6 +9,7 @@ import blogImg2 from "../images/blogs/blog-2.jpg";
 import blogImg3 from "../images/blogs/blog-3.jpg";
 import blogImg4 from "../images/blogs/blog-4.webp";
 import blogImg5 from "../images/blogs/blog-5.jpeg";
+import Chatbot from "./chatbot";
 
 const RaiseContainer = () => {
   const [donations, setDonations] = useState([]);
@@ -157,7 +158,9 @@ const RaiseContainer = () => {
         onClose={() => setIsModalOpen(false)}
         onDonate={handleDonate}
       />
+      <Chatbot/>
     </div>
+    
   );
 };
 

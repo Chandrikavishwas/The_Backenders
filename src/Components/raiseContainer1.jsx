@@ -11,6 +11,7 @@ import blogImg4 from "../images/blogs/blog-4.webp";
 import blogImg5 from "../images/blogs/blog-5.jpeg";
 import Navbar from "./navbar_page";
 import Footer from "./footer"
+import Chatbot from "./chatbot";
 
 const RaiseContainer = () => {
   const [donations, setDonations] = useState([]);
@@ -163,6 +164,7 @@ const RaiseContainer = () => {
         />
       </div>
       <Footer/>
+      <Chatbot/>
     </>
   );
 };

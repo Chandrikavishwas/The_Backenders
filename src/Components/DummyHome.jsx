@@ -177,10 +177,11 @@ const DummyHome = () => {
       <div className="lower-content" data-aos="fade-in" data-aos-delay="100">
         <VolunteerPage />
       </div>
-      <ChatBot/>
+      
       <div className="lower-content" data-aos="fade-in" data-aos-delay="100">
         <MemoizedFooter />
       </div>
+      <ChatBot/>
     </>
   );
 };

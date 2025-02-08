@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import Chatbot from "./chatbot";
 
 const Contact = () => {
     const [name, setName] = useState('');
@@ -121,6 +122,7 @@ const Contact = () => {
             </Modal>
 
             <Footer />
+            <Chatbot/>
         </>
     );
 }

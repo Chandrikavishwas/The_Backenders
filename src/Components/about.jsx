@@ -8,6 +8,7 @@ import AboutBox from "./aboutBox";
 import { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Chatbot from "./chatbot";
 
 
 const About = () => {
@@ -59,6 +60,7 @@ const About = () => {
       <Comment />
       <Volunteer />
       <Footer />
+      <Chatbot/>
     </>
   );
 };

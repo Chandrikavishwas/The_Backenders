@@ -17,6 +17,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
+import Chatbot from "./chatbot.jsx";
 
 const Raise = () => {
   const [showForm, setShowForm] = useState(false);
@@ -193,6 +194,7 @@ const Raise = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Chatbot/>
     </>
   );
 };

@@ -10,6 +10,7 @@ import blogImg5 from "../images/blogs/blog-5.jpeg";
 import photoImg1 from "../images/blogs/photo-.jpg";
 import Footer from "../Components/footer";
 import Aos from "aos";
+import Chatbot from "./chatbot";
 
 const articles = [
   { id: 1, title: "Understanding Poverty: A Global Perspective", excerpt: "This article explores the various dimensions of poverty around the world Based on 2019's PPPs International Comparison Program...", image: photoImg1, link: "https://www.hrw.org/report/2022/11/17/if-i-wasnt-poor-i-wouldnt-be-unfit/family-separation-crisis-us-child-welfare" },
@@ -70,6 +71,7 @@ const Blog = () => {
         </div>
       </div>
       <Footer />
+      <Chatbot/>
     </>
   );
 };
