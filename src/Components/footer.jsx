@@ -1,14 +1,19 @@
 import "../styles/footer.css";
 import imglogo from "../images/old-Logo/COPY_a_a_b_h_a_r__2_-removebg-preview.png";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
+   useEffect(() => {
+      Aos.init();
+    }, []);
   const navigate = useNavigate();
   return (
     <footer className="footerContainer">
       <div className="logoSection">
-        <img src={imglogo} className="logo" />
+        <img src={imglogo} className="logo" alt="aabhar" />
         <p className="tagline">
           Empowering dreams, one contribution at a time.
         </p>

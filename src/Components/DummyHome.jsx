@@ -24,6 +24,7 @@ import content3 from "../images/content3.webp";
 import ReactModal from "react-modal";
 import DummyFooter from "./dummyFooter";
 import HomeCards from "./HomeCards";
+import ChatBot from "./chatbot";
 ReactModal.setAppElement("#root");
 
 const MemoizedDummyNavbar = React.memo(DummyNavbar);
@@ -176,6 +177,7 @@ const DummyHome = () => {
       <div className="lower-content" data-aos="fade-in" data-aos-delay="100">
         <VolunteerPage />
       </div>
+      <ChatBot/>
       <div className="lower-content" data-aos="fade-in" data-aos-delay="100">
         <MemoizedFooter />
       </div>

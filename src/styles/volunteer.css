@@ -3,10 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .volunteer-page {
   text-align: center;
   padding: 20px;
   background-color: #f9f9f9;
+  overflow: hidden;
+  
 }
 
 .title {
@@ -25,10 +28,12 @@
 .team-container {
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 20px;
   flex-wrap: wrap;
   margin-top: 27px;
   margin-bottom: 38px;
+  overflow: hidden;
+  padding: 15px 0;
 }
 
 .team-member {
@@ -37,11 +42,15 @@
   height: 370px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease,
-    background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   width: 250px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  
 }
 
 .team-member:hover {
@@ -68,17 +77,17 @@
 }
 
 .member-image {
-  width: 100%;
-  height: 70%;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
   transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .team-member:hover .member-image {
   transform: scale(1.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -108,4 +117,35 @@
 .social-links a:hover {
   color: #005582;
   transform: scale(1.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .team-container {
+    gap: 20px;
+    flex-direction: column;
+  }
+  .team-member {
+    width: 80%; 
+    margin-bottom: 20px;
+  }
+  .member-image {
+    width: 100px; 
+    height: 100px;
+  }
+  .team-member:hover {
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .member-name {
+    font-size: 1.2rem;
+  }
+  .social-links a {
+    font-size: 1.2rem;
+  }
 }
