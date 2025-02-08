@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contact-page {
+    position: relative;
+    background-image: url("../images/people-3277563_1920.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: color-burn;
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.contact-form {
+    width: 90%;
+    max-width: 500px; 
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 20px auto; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.contact-form > h1 {
+    text-align: center;
+    font-size: 2.5rem; 
+    font-weight: 600;
+}
+
+.contact-form > h1:hover {
+    color: teal;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-button {
+    background-color: teal;
+    width: 100%; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.form-button:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.company-address {
+    width: 90%; 
+    max-width: 400px; 
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.company-address > h2 {
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.company-address > p {
+    margin-left: 0; 
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+.company-address > a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.company-address > a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    .contact-page{
+        height: 920px;
+        flex-direction: column;
+    }
+    .contact-form {
+        width: 90%; 
+    }
+
+    .company-address {
+        width: 90%; 
+        margin: 20px auto;
+    }
+
+    .contact-form > h1 {
+        font-size: 2rem; 
+    }
+
+    .form-button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .contact-form {
+        width: 70%; 
+    }
+
+    .company-address {
+        width: 70%;
+    }
+
+    .contact-form > h1 {
+        font-size: 2.5rem; 
+    }
+}        
+@media (max-width: 380px){
+ .contact-form{
+    margin-top:10rem;
+ }   
+}
