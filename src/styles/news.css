@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.newsContainer {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.newsHead {
+  font-size: 3rem;
+  margin-top: 2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: rgb(26, 34, 45);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.newsHead::after {
+  content: "";
+  position: absolute;
+  left: 35rem;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(60, 199, 142);
+  transition: width 0.3s ease-in-out;
+}
+
+.newsHead:hover::after {
+  width: 24.3rem;
+}
+
+.newsCardCont {
+  display: flex;
+  gap: 7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 5rem 0;
+}
+
+.newsCardSection {
+  cursor: pointer;
+  width: 55rem;
+  height: 18.5rem;
+  padding: 0.5rem;
+  background: rgba(198, 198, 198, 0.34);
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.44);
+  border-left: 2px rgba(255, 255, 255, 0.545) outset;
+  -webkit-box-shadow: -10px 10px 15px rgba(0, 0, 0, 0.28);
+  box-shadow: -10px 10px 15px rgba(0, 0, 0, 0.28);
+  -webkit-transform: skewX(10deg);
+  -ms-transform: skewX(10deg);
+  transform: skewX(10deg);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsCardSection:hover {
+  height: 45rem;
+  -webkit-transform: skew(0deg);
+  -ms-transform: skew(0deg);
+  transform: skew(0deg);
+}
+
+.newsCardAlign {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: flex-start;
+}
+
+.newsCardRed,
+.newsCardYellow,
+.newsCardGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  color: black;
+  -webkit-box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.28);
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.28);
+}
+
+.newsCardRed {
+  background-color: #ff605c;
+  overflow:hidden;
+}
+
+.newsCardYellow {
+  background-color: #ffbd44;
+  overflow:hidden;
+}
+
+.newsCardGreen {
+  background-color: #00ca4e;
+  overflow:hidden;
+}
+
+
+.newsImgCardTitle{
+  width: 100%;
+  height: 20rem;
+  display: block;
+  object-fit: cover; 
+  position: relative;
+  z-index: 0;
+}
+
+.newsImageSec {
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+}
+
+.newsCardText {
+  color: #070707;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Responsive Design for Various Screen Sizes */
+
+/* Desktop and Larger Screens */
+@media (min-width: 1200px) {
+  .newsCardCont {
+    gap: 7rem;
+  }
+
+  .newsCardSection {
+    width: 55rem;
+  }
+
+  .newsHead::after {
+    left: 35rem;
+    width: 0;
+  }
+
+  .newsHead:hover::after {
+    width: 24.3rem;
+  }
+}
+
+/* Tablet/Small Desktop: Between 992px and 1200px */
+@media (max-width: 1200px) and (min-width: 992px) {
+  .newsCardCont {
+    gap: 4rem;
+  }
+
+  .newsCardSection {
+    width: 45rem;
+  }
+
+  .newsHead::after {
+    left: 15rem;
+    width: 0;
+  }
+
+  .newsHead:hover::after {
+    width: 18rem;
+  }
+}
+
+/* Tablet: Between 768px and 992px */
+@media (max-width: 992px) and (min-width: 768px) {
+  .newsCardCont {
+    gap: 3rem;
+  }
+
+  .newsCardSection {
+    width: 35rem;
+  }
+  
+
+  .newsHead::after {
+    left: 10rem;
+    width: 0;
+  }
+
+  .newsHead:hover::after {
+    width: 15rem;
+  }
+}
+
+/* Mobile: Below 768px */
+@media (max-width: 768px) {
+  .newsCardCont {
+    gap: 2rem;
+    flex-direction: column;
+    
+  }
+
+  
+  .newsCardSection {
+    width: 90%;
+    margin-bottom: 1.5rem;
+    height: 120px;
+    padding: 1rem;
+  }
+
+  .newsHead::after {
+    left: 1rem;
+    width: 0;
+  }
+
+  .newsHead:hover::after {
+    width: 22.5rem;
+  }
+
+  .newsCardTitle {
+    font-size: 1rem;
+  }
+
+  .newsCardText {
+    font-size: 0.8rem;
+  }
+}
+
+.NewsReadbutton {
+  position: relative;
+  padding: 10px 300px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: rgb(60, 199, 142);
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.NewsReadbutton:active {
+  transform: scale(0.96);
+}
+
+.NewsReadbutton:before,
+.NewsReadbutton:after {
+  position: absolute;
+  content: "";
+  width: 150%;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1000;
+  background-repeat: no-repeat;
+}
+
+.NewsReadbutton:hover:before {
+  top: -70%;
+  background-image: radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, rgb(60, 199, 142) 20%, transparent 30%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, rgb(60, 199, 142) 15%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+    10% 10%, 18% 18%;
+  background-position: 50% 120%;
+  animation: greentopBubbles 0.6s ease;
+}
+
+@keyframes greentopBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+      40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+      50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+      50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+.NewsReadbutton:hover::after {
+  bottom: -70%;
+  background-image: radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, rgb(60, 199, 142) 15%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%),
+    radial-gradient(circle, rgb(60, 199, 142) 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+  background-position: 50% 0%;
+  animation: greenbottomBubbles 0.6s ease;
+}
+
+@keyframes greenbottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+      70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+      105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+      110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .NewsReadbutton {
+    padding: 10px 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .NewsReadbutton {
+    padding: 10px 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .NewsReadbutton {
+    padding: 10px 50px;
+  }
+  .newsCardSyn{
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .NewsReadbutton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
