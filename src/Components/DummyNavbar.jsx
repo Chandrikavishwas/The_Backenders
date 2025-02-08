@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   useDisclosure,
@@ -30,15 +30,28 @@ const DummyNavbar = React.memo(() => {
     navigate("/login");
   }, [navigate]);
 
-  window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar-wrapper");
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.querySelector(".navbar-wrapper");
+      if (navbar) {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled")
+        }
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
+  
+
+    const unsubscribe = () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+
+    return unsubscribe;
+  }, []);
+  
   return (
     <div className="navbar-wrapper">
       <nav className="navbar">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 import imglogo from "../images/Updated-Logo/COPY_Updated_Logo_B-removebg-preview.png";
@@ -12,14 +12,30 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar-wrapper");
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.querySelector(".navbar-wrapper");
+      if (navbar) {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+    };
+  
+
+    window.addEventListener("scroll", handleScroll);
+  
+    const unsubscribe = () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  
+
+    return unsubscribe;
+  }, []); 
+  
 
   return (
     <div className="navbar-wrapper">
