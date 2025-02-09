@@ -8,7 +8,7 @@ The Crowdfunding Platform is a React-based application that empowers individuals
 FullStack
 
 ## Deplolyed App
-https://cw-the-backenders.netlify.app/
+https://aabhar-2.netlify.app/
 
 ## Directory Structure
 ```plaintext
