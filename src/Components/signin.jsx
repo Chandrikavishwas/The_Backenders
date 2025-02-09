@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/
 import { useNavigate } from 'react-router-dom';
 import "../styles/signin.css"
 import { Button } from '@chakra-ui/react';
-import imglogo from "../images/Updated-Logo/CROP_Updated_Logo_W-removebg-preview.png";
+import imglogo from "../images/Updated-Logo/COPY_Updated_Logo_B-removebg-preview.png";
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -40,14 +40,14 @@ function SignIn() {
     <form className='sign-form' onSubmit={handleRegister}>
         <img src={imglogo} alt="logo"/>
       <h2 className='sign-h2'>Sign Up</h2>
-      <label>Your email</label>
+      <label style={{color:"white"}}>Your email</label>
       <input className='sign-input'
         type="email"
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <label>Password</label>
+      <label style={{color:"white"}}>Password</label>
       <input
         className='sign-input'
         type="password"
@@ -55,7 +55,7 @@ function SignIn() {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <label>Confirm Password</label>
+      <label style={{color:"white"}}>Confirm Password</label>
       <input
         className='sign-input'
         type="password"

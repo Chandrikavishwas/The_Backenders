@@ -24,35 +24,3 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
-
-
-
-
-
-// import React, { createContext, useContext, useState, useEffect } from 'react';
-// import { auth } from '../config/firebase';
-// import { onAuthStateChanged } from 'firebase/auth';
-
-// const AuthContext = createContext();
-
-// export function AuthProvider({ children }) {
-//   const [isAuthenticated , setIsAuthenticated ] = useState(false);
-
-//   useEffect(() => {
-//     const lsJSON = localStorage.getItem('idToken')
-//     if(lsJSON){
-//       return JSON.parse(lsJSON) ? setIsAuthenticated(true) : setIsAuthenticated(false)
-//     }
-//     return setIsAuthenticated(false)
-//   }, []);
-
-//   return (
-//     <AuthContext.Provider value={{ isAuthenticated  }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// }
-
-// export function useAuth() {
-//   return useContext(AuthContext);
-// }

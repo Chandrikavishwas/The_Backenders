@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import "../styles/home.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "./Carousel";
 import content1 from "../images/content2.webp";
 import content3 from "../images/content3.webp";
@@ -12,6 +12,8 @@ import News from "./news";
 import ReactModal from "react-modal";
 import "aos/dist/aos.css";
 import HomeCards from "./HomeCards";
+import ChatBot from "./chatbot";
+import Aos from "aos";
 
 ReactModal.setAppElement("#root");
 const Home = () => {
@@ -25,6 +27,9 @@ const Home = () => {
     setIsVideo(false);
   };
   const navigate = useNavigate();
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <>
       <div>
@@ -129,6 +134,7 @@ const Home = () => {
       <div className="lower-content" data-aos="fade-in" data-aos-delay="100">
         <Footer />
       </div>
+      <ChatBot/>
     </>
   );
 };

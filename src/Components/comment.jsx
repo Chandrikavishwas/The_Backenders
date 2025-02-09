@@ -1,25 +1,32 @@
-import { useState, useEffect } from 'react';
-import { ref, push, onValue, update, remove } from 'firebase/database';
-import { db } from '../config/firebase';
-import '../styles/comment.css';
+import { useState, useEffect } from "react";
+import { ref, push, onValue, update, remove, orderByChild, query } from "firebase/database";
+import { db } from "../config/firebase";
+import "../styles/comment.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 
 const CommentSection = () => {
   const [comments, setComments] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [replyingTo, setReplyingTo] = useState(null);
   const [editingComment, setEditingComment] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const commentsPerPage = 4;
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   // Fetch comments from Firebase
   useEffect(() => {
-    const commentsRef = ref(db, 'comments');
+    const commentsRef = query( ref(db, "comments"), orderByChild("timestamp"));
     const unsubscribe = onValue(commentsRef, (snapshot) => {
       const data = snapshot.val();
       const commentsArray = data
         ? Object.entries(data).map(([id, value]) => ({ id, ...value }))
         : [];
-      setComments(commentsArray);
+      setComments(commentsArray.reverse());
     });
 
     return () => unsubscribe();
@@ -41,11 +48,15 @@ const CommentSection = () => {
       setReplyingTo(null);
     } else {
       // Add a new parent comment
-      const commentsRef = ref(db, 'comments');
-      push(commentsRef, { text: inputValue.trim(), timestamp: Date.now(), rating: 0 });
+      const commentsRef = ref(db, "comments");
+      push(commentsRef, {
+        text: inputValue.trim(),
+        timestamp: Date.now(),
+        rating: 0,
+      });
     }
 
-    setInputValue('');
+    setInputValue("");
   };
 
   // Delete a comment or reply
@@ -92,9 +103,10 @@ const CommentSection = () => {
     const startIndex = (currentPage - 1) * commentsPerPage;
     const endIndex = startIndex + commentsPerPage;
     const commentsToRender = comments.slice(startIndex, endIndex);
+    
 
     return commentsToRender.map((comment) => (
-      <div key={comment.id} className="comment-section-comment">
+      <div key={comment.id} className="comment-section-comment" data-aos="fade-in" data-aos-delay="100">
         <p>
           <strong>Anonymous User :</strong> {comment.text}
         </p>
@@ -106,14 +118,14 @@ const CommentSection = () => {
           {Array.from({ length: 5 }, (_, i) => (
             <span
               key={i}
-              className={`star ${comment.rating > i ? 'filled' : ''}`}
+              className={`star ${comment.rating > i ? "filled" : ""}`}
               onClick={() => setCommentRating(comment.id, i + 1)}
             >
               ★
             </span>
           ))}
         </div>
-          
+
         <div className="comment-section-actions">
           <button
             className="comment-section-button"
@@ -147,31 +159,30 @@ const CommentSection = () => {
 
   // Handle pagination button click
   const handlePageChange = (direction) => {
-    if (direction === 'next') {
+    if (direction === "next") {
       setCurrentPage((prevPage) => prevPage + 1);
-    } else if (direction === 'prev' && currentPage > 1) {
+    } else if (direction === "prev" && currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
   return (
     <>
-    
-      <div className="comment-section-container">
+      <div className="comment-section-container" data-aos="fade-in" data-aos-delay="100">
         <h2 className="comment-section-title">Feedbacks</h2>
         <textarea
           className="comment-section-textarea"
           placeholder={
             editingComment
-              ? 'Editing comment...'
+              ? "Editing comment..."
               : replyingTo
-              ? 'Replying...'
-              : 'Add a comment'
+              ? "Replying..."
+              : "Add a comment"
           }
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
               addComment();
             }
@@ -187,15 +198,15 @@ const CommentSection = () => {
       <div className="pagination-controls">
         <button
           className="pagination-button"
-          onClick={() => handlePageChange('prev')}
+          onClick={() => handlePageChange("prev")}
           disabled={currentPage === 1}
         >
           Previous
         </button>
-        <span className = "currentPageNum">Page {currentPage}</span>
+        <span className="currentPageNum">Page {currentPage}</span>
         <button
           className="pagination-button"
-          onClick={() => handlePageChange('next')}
+          onClick={() => handlePageChange("next")}
           disabled={comments.length <= currentPage * commentsPerPage}
         >
           Next

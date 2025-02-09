@@ -14,9 +14,10 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  useDisclosure,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import ChatBot from "./chatbot";
 
 const Raise = () => {
   const [showForm, setShowForm] = useState(false);
@@ -85,40 +86,40 @@ const Raise = () => {
       <div className="raise-container">
         {!showForm ? (
           <button className="plus-button" onClick={handleButtonClick}>
-            +
+           + Add Your Funding Request
           </button>
         ) : (
           <form className="details-form" onSubmit={handleSubmit}>
             <label>
-              Reason:
+              Funding Reason:
               <input
                 type="text"
                 name="reason"
                 value={formData.reason}
                 onChange={handleInputChange}
-                placeholder="Relatable Reason"
+                placeholder="Enter the reason for funding"
                 required
               />
             </label>
             <label>
-              Amount to Be Raised:
+              Amount Needed:
               <input
                 type="number"
                 name="amount"
                 value={formData.amount}
                 onChange={handleInputChange}
-                placeholder="Enter the Amount"
+                placeholder="Enter the amount needed"
                 required
               />
             </label>
             <label>
-              Context:
+              Description:
               <textarea
                 name="context"
                 value={formData.context}
                 onChange={handleInputChange}
                 rows="4"
-                placeholder="Share your conditions"
+                placeholder="Describe your situation"
                 required
               ></textarea>
             </label>
@@ -169,7 +170,7 @@ const Raise = () => {
               <span className="goal">Goal: ₹{formData.amount}</span>
             </p>
             <p>
-              <strong>{formData.reason}</strong>
+              <strong style={{color:"white"}}>{formData.reason}</strong>
             </p>
 
             <p>{formData.context}</p>
@@ -193,6 +194,7 @@ const Raise = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <ChatBot/>
     </>
   );
 };

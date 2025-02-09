@@ -9,8 +9,6 @@ import blogImg2 from "../images/blogs/blog-2.jpg";
 import blogImg3 from "../images/blogs/blog-3.jpg";
 import blogImg4 from "../images/blogs/blog-4.webp";
 import blogImg5 from "../images/blogs/blog-5.jpeg";
-import Navbar from "./navbar_page";
-import Footer from "./footer"
 
 const RaiseContainer = () => {
   const [donations, setDonations] = useState([]);
@@ -21,35 +19,36 @@ const RaiseContainer = () => {
 
   useEffect(() => {
     const donationsRef = ref(db, "raiseRequests/");
-    onValue(donationsRef, (snapshot) => {
+    const unsubscribe = onValue(donationsRef, (snapshot) => {
       const data = snapshot.val();
-      const donationsList = [];
-      for (let id in data) {
-        donationsList.push({ id, ...data[id] });
+      if (data) {
+        const donationsList = Object.keys(data)
+          .map((id) => ({
+            id,
+            ...data[id],
+          }))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        setDonations(donationsList);
+        setCurrentPage(1);
       }
-      setDonations(donationsList);
     });
+
+    return () => unsubscribe();
   }, []);
 
-  const handleDonate = (amount) => {
+  const handleDonate = async (amount) => {
     if (selectedDonation) {
       const donationRef = ref(db, `raiseRequests/${selectedDonation.id}`);
       const newTotalDonated =
         parseFloat(selectedDonation.totalDonated || 0) + parseFloat(amount);
 
-      update(donationRef, { totalDonated: newTotalDonated })
-        .then(() => {
-          setDonations((prevDonations) =>
-            prevDonations.map((donation) =>
-              donation.id === selectedDonation.id
-                ? { ...donation, totalDonated: newTotalDonated }
-                : donation
-            )
-          );
-        })
-        .catch((error) => {
-          console.error("Error updating donation: ", error);
-        });
+      try {
+        await update(donationRef, { totalDonated: newTotalDonated });
+        setCurrentPage(1);
+      } catch (error) {
+        console.error("Error updating donation:", error);
+      }
     }
   };
 
@@ -72,98 +71,100 @@ const RaiseContainer = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="container-raise">
-        <h2 className="raise-h2">Donations</h2>
-        <ul className="raise-ul">
-          {currentItems.map((donation, index) => {
-            const progress = Math.min(
-              (donation.totalDonated / donation.amount) * 100,
-              100
-            );
+    <div className="container-raise">
+      <h2 className="raise-h2">Donations</h2>
+      <ul className="raise-ul">
+        {currentItems.map((donation, index) => {
+          const totalDonated = donation.totalDonated || 0;
+          const progress = Math.min(
+            (totalDonated / donation.amount) * 100,
+            100
+          );
 
-            return (
-              <li className="raise-li" key={donation.id}>
-                <img
-                  src={donateImages[index % donateImages.length]}
-                  alt="donate images"
-                  style={{ width: "100%", height: "auto" }}
-                />
-                <br />
-                <span
-                  style={{
-                    fontSize: "12px",
-                    color: "#555",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {progress.toFixed(2)}% Raised
-                </span>
-                <div
-                  className="progress-bar-container"
-                  style={{
-                    width: "100%",
-                    height: "20px",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    marginTop: "10px",
-                  }}
-                >
-                  <div
-                    className="progress-bar"
-                    style={{
-                      width: `${progress}%`,
-                      height: "100%",
-                      backgroundColor: progress >= 100 ? "green" : "teal",
-                      transition: "width 0.3s ease",
-                    }}
-                  ></div>
+          return (
+            <li className="raise-li" key={donation.id}>
+              <img
+                src={donateImages[index % donateImages.length]}
+                alt="donate images"
+                style={{ width: "100%", height: "auto" }}
+              />
+              <br />
+              <span
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                {progress.toFixed(2)}% Raised
+              </span>
+              <div
+                className="progress-bar"
+                style={{
+                  width: `${progress}%`,
+                  backgroundColor:
+                    progress >= 100
+                      ? "#4CAF50"
+                      : progress >= 30
+                      ? "#ff9800"
+                      : "#ff3b3b",
+                }}
+              />
+
+              <div className="donation-details">
+                <div className="detail-row">
+                  <span className="detail-label">Amount:</span>
+                  <span className="detail-value">₹{donation.amount}</span>
                 </div>
-                <strong>Amount:</strong> ₹{donation.amount}
-                <br />
-                <strong>Total Donated:</strong> ₹{donation.totalDonated}
-                <br />
-                <strong>Reason:</strong> {donation.reason}
-                <br />
-                <strong>Context:</strong> {donation.context}
-                <br />
-                <strong>Created At:</strong>{" "}
-                {new Date(donation.createdAt).toLocaleString()}
-                <br />
-                <Button
-                  colorScheme="teal"
-                  marginTop="10px"
-                  onClick={() => openModal(donation)}
-                >
-                  Donate Now 💰
-                </Button>
-              </li>
-            );
-          })}
-        </ul>
-        {/* Pagination Controls */}
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <Button
-              key={i + 1}
-              onClick={() => handlePageChange(i + 1)}
-              isActive={i + 1 === currentPage}
-              margin="5px"
-              colorScheme={i + 1 === currentPage ? "teal" : "gray"}
-            >
-              {i + 1}
-            </Button>
-          ))}
-        </div>
-        <DonationModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onDonate={handleDonate}
-        />
+                <div className="detail-row">
+                  <span className="detail-label">Total Donated:</span>
+                  <span className="detail-value">₹{donation.totalDonated}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Reason:</span>
+                  <span className="detail-value">{donation.reason}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Context:</span>
+                  <span className="detail-value">{donation.context}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Created At:</span>
+                  <span className="detail-value">
+                    {new Date(donation.createdAt).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              <Button
+                colorScheme="teal"
+                marginTop="10px"
+                onClick={() => openModal(donation)}
+              >
+                Donate Now 💰
+              </Button>
+            </li>
+          );
+        })}
+      </ul>
+      {/* Pagination Controls */}
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Button
+            key={i + 1}
+            onClick={() => handlePageChange(i + 1)}
+            isActive={i + 1 === currentPage}
+            margin="5px"
+            colorScheme={i + 1 === currentPage ? "teal" : "gray"}
+          >
+            {i + 1}
+          </Button>
+        ))}
       </div>
-      <Footer/>
-    </>
+      <DonationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onDonate={handleDonate}
+      />
+    </div>
   );
 };
 

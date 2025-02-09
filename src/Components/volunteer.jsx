@@ -1,30 +1,42 @@
-import React from 'react';
+
 import '../styles/volunteer.css'; 
-import aditya from "../images/volunteers/aditya.jpeg"
-import prachi from "../images/volunteers/prachi.jpg"
-import shiv from '../images/volunteers/shiv.jpeg'
+import Chandrika from "../images/volunteers/Chandrika.jpg"
+import Harsha from "../images/volunteers/Harsha.jpg"
+import Shiv from '../images/volunteers/Shiv.jpg'
+import Uma from "../images/volunteers/Uma.jpg"
+import { useEffect } from 'react';
+import Aos from 'aos';
+import "aos/dist/aos.css";
 
 const VolunteerPage = () => {
   const teamMembers = [
     {
-      name: "Aditya Kumar",
-      imageUrl: aditya,
+      name: "Chandrika",
+      imageUrl: Chandrika,
       
     },
     {
-      name: "Shiv Sahni ₜₑₐₘ ₗₑₐ𝒹",
-      imageUrl: shiv,
+      name: "Shiv Sahni",
+      imageUrl: Shiv,
       
     },
     {
-      name: "Prachi Sharma",
-      imageUrl: prachi,
+      name: "Uma Sharma",
+      imageUrl:Uma,
       
     },
+    {
+      name:"Harsha Vardhan",
+      imageUrl:Harsha,
+    }
   ];
 
+  useEffect(() => {
+      Aos.init();
+    }, []);
+
   return (
-    <div className="volunteer-page">
+    <div className="volunteer-page" data-aos="fade-in" data-aos-delay="300">
       <h2 className="title">Meet Our Volunteers</h2>
       <div className="team-container">
         {teamMembers.map((member, index) => (

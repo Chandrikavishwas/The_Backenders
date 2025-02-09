@@ -3,9 +3,8 @@ import { auth } from '../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css'; 
-import { Button } from '@chakra-ui/react';
-import imglogo from "../images/Updated-Logo/CROP_Updated_Logo_W-removebg-preview.png";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from '@chakra-ui/react';
+import imglogo from "../images/Updated-Logo/COPY_Updated_Logo_B-removebg-preview.png";
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -49,20 +48,20 @@ function Login() {
       <div className="container">
         <form className="loginForm" onSubmit={handleLogin}>
           <img src={imglogo} alt="logo" />
-          <h2 className='login-h2'>Welcome</h2>
-          <h3 className='login-h3'>Sign in To your Crow Funding Account</h3>
-          <label>Email or Username</label>
+          <h2 className='login-h2'>Welcome to Your Fundraising Journey</h2>
+          <h3 className='login-h3'>Login to Your Fundraising Platform</h3>
+          <label style={{color:"white"}}>Email or Username</label>
           <input className='login-input'
             type="email"
-            placeholder="Email"
+            placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label>Password</label>
+          <label style={{color:"white"}}>Password</label>
           <div className="password-container">
             <input
               type={showPassword ? "text" : "password"} 
-              placeholder="Password"
+              placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -77,7 +76,7 @@ function Login() {
           <Button colorScheme='teal' w="100%" p="14px 20px" type="submit">Login</Button>
           {error && <p className="error-message">{error}</p>}
         </form>
-        <p className='login-p'>No account? Sign Up</p>
+        <p className='login-p'>Don't have an account yet? Sign Up</p>
         <Button colorScheme='red' w="100%" p="14px" marginTop="15px" onClick={handleSignUpRedirect}>Sign Up</Button>
       </div>
     </div>

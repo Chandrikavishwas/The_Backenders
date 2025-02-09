@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npx cp-cli _redirects dist/_redirects",
+    "build": "vite build && copy _redirects dist\\",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -13,9 +13,11 @@
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@google/generative-ai": "^0.21.0",
     "aos": "^2.3.4",
     "firebase": "^11.1.0",
     "framer-motion": "^11.15.0",
+    "lucide-react": "^0.475.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
@@ -23,7 +25,8 @@
     "react-modal": "^3.16.3",
     "react-router-dom": "^7.0.2",
     "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tslib": "^1.14.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
