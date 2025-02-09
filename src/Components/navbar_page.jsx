@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar-container">
+    <div className="navbar-container" style={{ height: isOpen ? "300px" : "auto" }}>
       <nav className="navbar">
         <Link to="/home" className="navbar-logo-link">
           <img src={imglogo} className="navbar-logo" alt="Logo" />
