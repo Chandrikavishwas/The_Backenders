@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DummyNavbar from "./DummyNavbar";
 import News from "./news";
 import "../styles/home.css";
@@ -25,6 +25,7 @@ import ReactModal from "react-modal";
 import DummyFooter from "./dummyFooter";
 import HomeCards from "./HomeCards";
 import ChatBot from "./chatbot";
+import Aos from "aos";
 ReactModal.setAppElement("#root");
 
 const MemoizedDummyNavbar = React.memo(DummyNavbar);
@@ -47,6 +48,9 @@ const DummyHome = () => {
   const handleLoginRedirect = () => {
     navigate("/login");
   };
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   return (
     <>

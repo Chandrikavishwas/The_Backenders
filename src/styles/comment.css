@@ -122,8 +122,7 @@
   color: gold;
 }
 
-.star:hover,
-.star:hover ~ .star {
+.star:hover {
   color: #ffd700;
 }
 

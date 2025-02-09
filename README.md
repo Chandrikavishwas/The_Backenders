@@ -8,7 +8,7 @@ The Crowdfunding Platform is a React-based application that empowers individuals
 FullStack
 
 ## Deplolyed App
-https://aabhar.netlify.app/
+https://cw-the-backenders.netlify.app/
 
 ## Directory Structure
 ```plaintext
@@ -166,7 +166,7 @@ Assumptions:
 Detailed instructions on how to install, configure, and get the project running. For BE/FS projects, guide the reviewer how to check mongodb schema etc.
 
 Clone the repository -
-git clone https://github.com/your-repo/crowdfunding-platform.git
+git clone https://github.com/Chandrikavishwas/The_Backenders
  
 Navigate to the project directory -
 cd crowdfunding-platform

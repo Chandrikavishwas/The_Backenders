@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npx cp-cli _redirects dist/_redirects",
+    "build": "vite build && copy _redirects dist\\",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -25,7 +25,8 @@
     "react-modal": "^3.16.3",
     "react-router-dom": "^7.0.2",
     "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tslib": "^1.14.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

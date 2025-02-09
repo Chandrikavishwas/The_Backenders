@@ -36,7 +36,7 @@ const VolunteerPage = () => {
     }, []);
 
   return (
-    <div className="volunteer-page" data-aos="fade-in" data-aos-delay="100">
+    <div className="volunteer-page" data-aos="fade-in" data-aos-delay="300">
       <h2 className="title">Meet Our Volunteers</h2>
       <div className="team-container">
         {teamMembers.map((member, index) => (
