@@ -61,7 +61,7 @@ const DummyNavbar = React.memo(() => {
 
         <div className={`nav-links ${isOpened ? "open" : ""}`}>
           <div className="donateButtonSpace">
-            <Button colorScheme='transparent' border="1px solid white" onClick={onOpen} className="make-a-donate">
+            <Button colorScheme='transparent' border="1px solid white" onClick={onOpen} className="make-a-donate" >
               Explore our features
             </Button>
             <Button colorScheme='transparent' border="1px solid white" onClick={onOpen} className="make-a-donate">
