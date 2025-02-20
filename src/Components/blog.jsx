@@ -56,7 +56,7 @@ const Blog = () => {
           <div className="articles">
             {articles.slice(startIndex, endIndex).map((article, index) => (
               <div key={article.id} className="article" data-aos="fade-up" data-aos-delay={index * 100}>
-                <img src={article.image} alt={article.title} className="article-image" data-aos="zoom-in" />
+                <img src={article.image} alt={article.title} className="article-image" data-aos="zoom-in" loading="lazy"/>
                 <h2>{article.title}</h2>
                 <p>{article.excerpt}</p>
                 <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
